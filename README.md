@@ -1,115 +1,99 @@
-# Agentic RAG Toolkit 📚🧠
+# 🧠 Agentic RAG Toolkit
 
-This repository contains modular and experimental implementations of **Agentic Retrieval-Augmented Generation (RAG)** pipelines using [LangChain](https://www.langchain.com/), [FAISS](https://github.com/facebookresearch/faiss), [HuggingFace](https://huggingface.co/), and models from **OpenAI**, **Together.ai**, and **GROQ**.
+A modular, research-driven framework for building **Agentic Retrieval-Augmented Generation (RAG)** pipelines using tools such as **LangChain**, **FAISS**, **Hugging Face**, **OpenAI**, **Together.ai**, and **Groq**.
 
----
-
-## 🔧 Project Structure
-
-.
-├── agents/
-│   ├── agents.ipynb         ← General Agentic RAG pipeline with Wikipedia, ArXiv, and LangSmith tools
-│   └── ai_agents.ipynb      ← Custom RAG agent for PCOS/PMS/PCOD with multiple vector sources
-│
-├── groq/
-│   ├── app.py               ← Streamlit app using Groq-hosted LLaMA model with vector retrieval
-│   └── groq.ipynb           ← Jupyter notebook version of the same
-│
-├── huggingface/
-│   ├── tf_papers/           ← Open-source Transformer-related research PDFs
-│   └── hugging.ipynb        ← RAG pipeline using huggingface models and academic sources
-│
-├── .env                     ← Environment variables
-├── venv/                    ← Python virtual environment
-└── README.md                ← You're here!
-
+This toolkit is designed to:
+- Enable **multi-source document retrieval**
+- Integrate **custom vector databases**
+- Empower agents with **domain-specific intelligence**
+- Support both **notebook-based** experimentation and **app-based** deployment
 
 ---
-
-## 🧠 agents/ - Agentic Retrieval-Augmented Generation
-
-### `agents.ipynb`
-
-An AI agent powered by LangChain that can:
-
-- Search and retrieve documents from:
-  - 🔗 [LangSmith documentation](https://docs.smith.langchain.com/)
-  - 📚 Wikipedia
-  - 📄 ArXiv research papers
-- Use `FAISS` for vector storage and similarity search
-- Generate responses with Together.ai’s **LLaMA 3.3 70B** model
-
-**Sample Pipeline:**
-```python
-loader = WebBaseLoader("https://docs.smith.langchain.com/")
-docs = loader.load()
-
-# Chunking
-splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-documents = splitter.split_documents(docs)
-
-# Embedding and storing
-vectordb = FAISS.from_documents(documents, HuggingFaceEmbeddings(...))
-
-# Tools
-retriever_tool = create_retriever_tool(vectordb.as_retriever(), ...)
-arxiv = ArxivQueryRun(...)
-wikipedia = WikipediaQueryRun(...)
-tools = [retriever_tool, arxiv, wikipedia]
-
-# Agent
-llm = ChatOpenAI(...)
-agent = create_openai_tools_agent(llm, tools, prompt)
-executor = AgentExecutor(agent=agent, tools=tools)
 
 ## 📁 Project Structure
 
-### `ai_agents.ipynb`  
-A **domain-specific agent** trained for PCOS/PMS/PCOD topics using:
-
-🔍 **Multiple FAISS vector DBs** for:
-- Clinical guidelines  
-- Government health policies  
-- Research publications  
-- Blogs and public health education  
-
-🔗 **External tools** integrated:
-- ArXiv  
-- Wikipedia  
-- Google Search  
-
----
-
-### 💻 `groq/` - Streamlit + Groq-Powered RAG
-
-#### `app.py`  
-An **interactive Streamlit app** that:
-- Loads content (e.g., from Wikipedia: *Virat Kohli*)  
-- Chunks and embeds using HuggingFace Transformers  
-- Stores vectors in a FAISS database  
-- Answers queries using Groq-hosted **LLaMA 3.3-70B** with a custom prompt  
-
-✅ **Features:**
-- Real-time query handling  
-- Context-aware LLM responses  
-- Execution time tracking  
+```plaintext
+.
+├── agents/
+│   ├── agents.ipynb         # General Agentic RAG pipeline using Wikipedia, ArXiv, and LangSmith
+│   └── ai_agents.ipynb      # Custom domain-specific agent for PCOS/PMS/PCOD
+│
+├── groq/
+│   ├── app.py               # Streamlit app using Groq-hosted LLaMA 3.3 70B
+│   └── groq.ipynb           # Notebook version of the same app
+│
+├── huggingface/
+│   ├── tf_papers/           # Open-source Transformer research papers
+│   └── hugging.ipynb        # RAG pipeline using Hugging Face models and academic sources
+│
+├── .env                     # API keys and environment variables
+├── venv/                    # Python virtual environment
+└── README.md                # You're here!
+```
 
 ---
 
-### 🤗 `huggingface/` - Open Source RAG from Research
+## 🧠 `agents/` – General & Domain-Specific RAG Agents
 
-#### `hugging.ipynb`  
-Implements the **same RAG architecture** to:
-- Process and embed papers in `tf_papers/`  
-- Perform **document similarity search**  
-- Answer questions on Transformer-based literature  
+### `agents.ipynb` – General-Purpose Agentic RAG
 
-📚 Uses research papers like:
-- *Attention is All You Need*  
-- *Masked Attention Transformers*  
-- *TransUNet*, etc.  
+This notebook demonstrates an **AI assistant pipeline** built using `LangChain`, designed to retrieve and synthesize information from:
 
-This pipeline is **fully open-source**, ideal for academic and reproducible research.
+- 🌐 [LangSmith Documentation](https://docs.smith.langchain.com/)
+- 📚 Wikipedia
+- 📄 ArXiv scientific papers
+
+### 🔧 Core Components:
+- **WebBaseLoader**: Scrapes and loads content from online sources
+- **TextSplitter**: Splits text into manageable chunks
+- **FAISS**: Vector store for embedding and fast retrieval
+- **Retriever Tools**: Integrates Wikipedia, ArXiv, and LangSmith into the agent
+- **Together.ai LLaMA 3.3-70B**: Generates coherent answers based on the retrieved context
+
+---
+
+### `ai_agents.ipynb` – Domain-Specific Agent for Women’s Health
+
+Custom-built agent focused on PCOS, PMS, and PCOD topics using multi-source vectors.
+
+**Sources Indexed:**
+- 🏥 Clinical guidelines
+- 🏛️ Government health policies
+- 📄 Research publications
+- 📢 Educational blogs
+
+**External Tools:**
+- 📚 Wikipedia
+- 📄 ArXiv
+- 🔍 Google Search
+
+---
+
+## ⚙️ `groq/` – Real-Time RAG with Streamlit
+
+### `app.py`
+
+Interactive Streamlit application with the following capabilities:
+- Loads content dynamically (e.g., *Virat Kohli* on Wikipedia)
+- Chunks, embeds, and stores vectors in FAISS
+- Queries Groq-hosted **LLaMA 3.3-70B** for context-aware responses
+
+### ✅ Features
+- Real-time LLM-powered querying
+- Response context tracing
+- Execution time monitoring
+
+---
+
+## 🤗 `huggingface/` – Research-Oriented RAG
+
+### `hugging.ipynb`
+
+- Embeds open-source research papers located in `tf_papers/`
+- Supports document similarity and Q&A over papers like:
+  - *Attention is All You Need*
+  - *TransUNet*
+  - *Masked Attention Transformers*
 
 ---
 
@@ -121,13 +105,16 @@ git clone https://github.com/your-username/agentic-rag.git
 cd agentic-rag
 
 # Activate virtual environment
-.\venv\Scripts\activate    # Windows PowerShell
+.env\Scriptsctivate    # Windows
 source venv/bin/activate  # macOS/Linux
 
 # Install dependencies
 pip install -r requirements.txt
+```
 
-# Inside .env
-OPENAI_API_TOGETHER_API=your_openai_or_together_api_key
+### 🔐 Environment Variables (.env)
+```env
+OPENAI_API_KEY=your_openai_or_together_api_key
 GROQ_API_KEY=your_groq_api_key
-HUGGING_FACE_API = your_hugging_face_api
+HUGGING_FACE_API=your_hugging_face_api
+```
