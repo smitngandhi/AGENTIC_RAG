@@ -8,20 +8,20 @@ This repository contains modular and experimental implementations of **Agentic R
 
 .
 ├── agents/
-│ ├── agents.ipynb ← General Agentic RAG pipeline with Wikipedia, ArXiv, and LangSmith tools
-│ └── ai_agents.ipynb ← Custom RAG agent for PCOS/PMS/PCOD with multiple vector sources
+│   ├── agents.ipynb         ← General Agentic RAG pipeline with Wikipedia, ArXiv, and LangSmith tools
+│   └── ai_agents.ipynb      ← Custom RAG agent for PCOS/PMS/PCOD with multiple vector sources
 │
 ├── groq/
-│ ├── app.py ← Streamlit app using Groq-hosted LLaMA model with vector retrieval
-│ └── groq.ipynb ← Jupyter notebook version of the same
+│   ├── app.py               ← Streamlit app using Groq-hosted LLaMA model with vector retrieval
+│   └── groq.ipynb           ← Jupyter notebook version of the same
 │
 ├── huggingface/
-│ ├── tf_papers/ ← Open-source Transformer-related research PDFs
-│ └── hugging.ipynb ← RAG pipeline using huggingface models and academic sources
+│   ├── tf_papers/           ← Open-source Transformer-related research PDFs
+│   └── hugging.ipynb        ← RAG pipeline using huggingface models and academic sources
 │
-├── .env ← Environment variables
-├── venv/ ← Python virtual environment
-└── README.md ← You're here!
+├── .env                     ← Environment variables
+├── venv/                    ← Python virtual environment
+└── README.md                ← You're here!
 
 
 ---
