@@ -50,24 +50,7 @@ This notebook demonstrates an **AI assistant pipeline** built using `LangChain`,
 - **Retriever Tools**: Integrates Wikipedia, ArXiv, and LangSmith into the agent
 - **Together.ai LLaMA 3.3-70B**: Generates coherent answers based on the retrieved context
 
----
 
-### `ai_agents.ipynb` – Domain-Specific Agent for Women’s Health
-
-Custom-built agent focused on PCOS, PMS, and PCOD topics using multi-source vectors.
-
-**Sources Indexed:**
-- 🏥 Clinical guidelines
-- 🏛️ Government health policies
-- 📄 Research publications
-- 📢 Educational blogs
-
-**External Tools:**
-- 📚 Wikipedia
-- 📄 ArXiv
-- 🔍 Google Search
-
----
 
 ## ⚙️ `groq/` – Real-Time RAG with Streamlit
 
