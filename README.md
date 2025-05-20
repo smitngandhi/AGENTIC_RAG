@@ -16,7 +16,6 @@ This toolkit is designed to:
 .
 ├── agents/
 │   ├── agents.ipynb         # General Agentic RAG pipeline using Wikipedia, ArXiv, and LangSmith
-│   └── ai_agents.ipynb      # Custom domain-specific agent for PCOS/PMS/PCOD
 │
 ├── groq/
 │   ├── app.py               # Streamlit app using Groq-hosted LLaMA 3.3 70B
